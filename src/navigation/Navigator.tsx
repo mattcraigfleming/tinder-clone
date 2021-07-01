@@ -5,12 +5,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Home from '../screens/Home/Home';
 import Messages from '../screens/Messages/Messages';
 import {NavigationLayout} from '../types/enum';
+import {MyTheme} from '../theme';
 
 const Tab = createBottomTabNavigator();
 
 const Navigator = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <Tab.Navigator>
         <Tab.Screen
           name={NavigationLayout.HOME_SCREEN}
