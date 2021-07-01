@@ -5,7 +5,7 @@ import styles from './MessagesStyles';
 const Messages = () => {
   return (
     <View style={styles.container}>
-      <Text>No Matches :(</Text>
+      <Text style={styles.text}>No Matches 😭 </Text>
     </View>
   );
 };

@@ -6,16 +6,24 @@ import React, {
   useContext,
 } from 'react';
 import {generateMockData, MOCKDATA_LIMIT} from '../mockData';
+import {IProfile} from '../types/interface';
 
-interface IProfileContextProps {
+interface IContextProps {
   children: ReactChild | ReactChildren;
+}
+
+interface IProfileContext {
+  profiles: IProfile[];
+  profileIndex?: number;
+  nextCard: () => void;
+  error?: {message: string};
 }
 
 export const ProfilesContext = createContext({});
 
-export const useProfiles = () => useContext(ProfilesContext);
+export const useProfiles = () => useContext(ProfilesContext) as IProfileContext;
 
-export const ProfilesContextProvider = ({children}: IProfileContextProps) => {
+export const ProfilesContextProvider = ({children}: IContextProps) => {
   const [profiles] = useState(generateMockData(MOCKDATA_LIMIT));
   const [profileIndex, setProfileIndex] = useState(0);
   const [error, setError] = useState({message: ''});
