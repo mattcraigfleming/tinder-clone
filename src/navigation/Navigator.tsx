@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Home from '../screens/Home';
 import Messages from '../screens/Messages';
 import {NavigationLayout} from '../types/enum';
@@ -17,7 +17,7 @@ const Navigator = () => {
           component={Home}
           options={{
             tabBarIcon: ({color, size}) => (
-              <MaterialCommunityIcons name="bell" color={color} size={size} />
+              <Icon name="fire" color={color} size={size} />
             ),
           }}
         />
@@ -26,7 +26,7 @@ const Navigator = () => {
           component={Messages}
           options={{
             tabBarIcon: ({color, size}) => (
-              <MaterialCommunityIcons name="bell" color={color} size={size} />
+              <Icon name="envelope" color={color} size={size} />
             ),
             tabBarBadge: 3,
           }}
