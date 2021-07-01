@@ -14,6 +14,8 @@ import {ISwipeCardProps} from '../types/interface';
 const {width: windowWidth, height: windowHeight} = Dimensions.get('window');
 
 const SwipeCard = (props: ISwipeCardProps) => {
+  const [liked, setLiked] = useState(false);
+  const [disliked, setDisliked] = useState(false);
   // Set initial multiplexed animated value
   const [pan] = useState(new Animated.ValueXY());
   // Initialize pan responder callback functions
@@ -24,8 +26,15 @@ const SwipeCard = (props: ISwipeCardProps) => {
         useNativeDriver: false,
       }),
       onPanResponderRelease: (e, {dx}) => {
+        // abs value of dx
         const absDx = Math.abs(dx);
+        // 1 right (like), -1 left (dislike)
         const direction = absDx / dx;
+        if (direction === 1) {
+          setLiked(true);
+        } else {
+          setDisliked(true);
+        }
         if (absDx > 120) {
           Animated.decay(pan, {
             velocity: {x: 3 * direction, y: 0},
@@ -42,6 +51,8 @@ const SwipeCard = (props: ISwipeCardProps) => {
       },
     }),
   );
+
+  console.log(liked);
 
   // Destruct props
   const {profile} = props;

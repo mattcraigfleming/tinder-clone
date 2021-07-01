@@ -13,7 +13,6 @@ const Home = () => {
     setProfileIndex(profileIndex + 1);
   };
 
-  console.log(profileIndex, MOCKDATA_INDEX);
   return (
     <View>
       {profiles.map(profile => (
