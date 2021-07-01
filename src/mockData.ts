@@ -1,7 +1,7 @@
 import faker from 'faker';
 import {IProfile} from './types/interface';
 
-// Constants
+// CONSTANTS
 // Mock data generation limit = 10
 export const MOCKDATA_LIMIT = 40;
 

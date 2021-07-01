@@ -50,7 +50,8 @@ const SwipeCard = (props: ISwipeCardProps) => {
   const {dob, name, bio, id} = props.profile;
   const profileBday = moment(dob, 'MM/DD/YYYY');
   const profileAge = moment().diff(profileBday, 'years');
-  const fbImage = `https://graph.facebook.com/${id}/picture?height=500`;
+  // Random image generator
+  const fbImage = `https://randomuser.me/api/portraits/women/${id}.jpg`;
 
   const rotateCard = pan.x.interpolate({
     inputRange: [-200, 0, 200],
