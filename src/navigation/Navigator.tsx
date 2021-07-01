@@ -2,8 +2,8 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Home from '../screens/Home';
-import Messages from '../screens/Messages';
+import Home from '../screens/Home/Home';
+import Messages from '../screens/Messages/Messages';
 import {NavigationLayout} from '../types/enum';
 
 const Tab = createBottomTabNavigator();

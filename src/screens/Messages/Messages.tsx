@@ -1,10 +1,11 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import styles from './MessagesStyles';
 
 const Messages = () => {
   return (
-    <View>
-      <Text>Messages screen</Text>
+    <View style={styles.container}>
+      <Text>No Matches :(</Text>
     </View>
   );
 };
