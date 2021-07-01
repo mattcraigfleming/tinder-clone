@@ -3,7 +3,7 @@ import {IProfile} from './types/interface';
 
 // Constants
 // Mock data generation limit = 10
-export const MOCKDATA_LIMIT = 10;
+export const MOCKDATA_LIMIT = 40;
 
 export const generateMockData = (dataPoints: number) => {
   // init empty profile
