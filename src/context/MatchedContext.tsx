@@ -1,13 +1,17 @@
-import React, {useState, createContext} from 'react';
+import React, {useState, createContext, ReactChild, ReactChildren} from 'react';
+
+interface IMatchedContextProps {
+  children: ReactChild | ReactChildren;
+}
 
 export const MatchedContext = createContext({});
 
-export const MatchedContextProvider = props => {
+export const MatchedContextProvider = ({children}: IMatchedContextProps) => {
   const [matchedProfiles, setMatchedProfiles] = useState(0);
 
   return (
     <MatchedContext.Provider value={[matchedProfiles, setMatchedProfiles]}>
-      {props.children}
+      {children}
     </MatchedContext.Provider>
   );
 };

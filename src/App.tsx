@@ -3,6 +3,7 @@ import {SafeAreaView, View, Text} from 'react-native';
 import {generateMockData} from './mockData';
 import SwipeCard from './components/SwipeCard';
 import {ProfilesContextProvider} from './context/ProfilesContext';
+import Navigator from './navigation/Navigator';
 
 const MOCKDATA_INDEX = 10;
 
@@ -19,9 +20,10 @@ const App = () => {
   return (
     <SafeAreaView>
       <ProfilesContextProvider>
-        {profiles.map(profile => (
+        {/* {profiles.map(profile => (
           <SwipeCard profile={profile} key={profile.id} onSwipeOff={nextCard} />
-        ))}
+        ))} */}
+        <Navigator />
       </ProfilesContextProvider>
     </SafeAreaView>
   );
