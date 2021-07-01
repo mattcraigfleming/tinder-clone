@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   Animated,
   PanResponder,
@@ -14,8 +14,7 @@ import {ISwipeCardProps} from '../types/interface';
 const {width: windowWidth, height: windowHeight} = Dimensions.get('window');
 
 const SwipeCard = (props: ISwipeCardProps) => {
-  const [pan, setPan] = useState(new Animated.ValueXY());
-  console.log(setPan);
+  const [pan] = useState(new Animated.ValueXY());
   const [cardPanResponder] = useState(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -39,11 +38,8 @@ const SwipeCard = (props: ISwipeCardProps) => {
       },
     }),
   );
-  // Animation initial setup
-  useEffect(() => {}, []);
-
-  const {dob, name, bio, id} = props.profile;
-  console.log(name);
+  const {profile} = props;
+  const {dob, name, bio, id} = profile;
   const profileBday = moment(dob, 'MM/DD/YYYY');
   const profileAge = moment().diff(profileBday, 'years');
   const fbImage = `https://graph.facebook.com/${id}/picture?height=500`;
@@ -84,6 +80,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: 'white',
   },
+  wrapper: {},
 });
 
 export default SwipeCard;
