@@ -14,7 +14,9 @@ import {ISwipeCardProps} from '../types/interface';
 const {width: windowWidth, height: windowHeight} = Dimensions.get('window');
 
 const SwipeCard = (props: ISwipeCardProps) => {
+  // Set initial multiplexed animated value
   const [pan] = useState(new Animated.ValueXY());
+  // Initialize pan responder callback functions
   const [cardPanResponder] = useState(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -38,8 +40,11 @@ const SwipeCard = (props: ISwipeCardProps) => {
       },
     }),
   );
+
+  // Destruct props
   const {profile} = props;
   const {dob, name, bio, id} = profile;
+
   const profileBday = moment(dob, 'MM/DD/YYYY');
   const profileAge = moment().diff(profileBday, 'years');
   const fbImage = `https://graph.facebook.com/${id}/picture?height=500`;
