@@ -20,7 +20,9 @@ const SwipeCard = (props: ISwipeCardProps) => {
   const [cardPanResponder] = useState(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([null, {dx: pan.x, dy: pan.y}]),
+      onPanResponderMove: Animated.event([null, {dx: pan.x, dy: pan.y}], {
+        useNativeDriver: false,
+      }),
       onPanResponderRelease: (e, {dx}) => {
         const absDx = Math.abs(dx);
         const direction = absDx / dx;
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: windowWidth - 20,
     height: windowHeight * 0.7,
-    top: (windowHeight * 0.3) / 2,
+    top: (windowHeight * 0.3) / 6,
     overflow: 'hidden',
     margin: 10,
     borderWidth: 1,
