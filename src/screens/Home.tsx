@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-import SwipeCard from '../components/SwipeCard';
-import {generateMockData} from '../mockData';
+import SwipeCard from '../components/SwipeCard/SwipeCard';
+import {generateMockData, MOCKDATA_INDEX} from '../mockData';
 import {View} from 'react-native';
-
-const MOCKDATA_INDEX = 10;
 
 const Home = () => {
   const [profiles] = useState(generateMockData(MOCKDATA_INDEX));

@@ -1,21 +1,15 @@
 import React, {useState} from 'react';
-import {
-  Animated,
-  PanResponder,
-  Dimensions,
-  StyleSheet,
-  Image,
-  View,
-  Text,
-} from 'react-native';
+import {Animated, PanResponder, Image, View, Text} from 'react-native';
 import moment from 'moment';
-import {ISwipeCardProps} from '../types/interface';
-
-const {width: windowWidth, height: windowHeight} = Dimensions.get('window');
+import {ISwipeCardProps} from '../../types/interface';
+import styles from './SwipeCardStyles';
 
 const SwipeCard = (props: ISwipeCardProps) => {
-  const [liked, setLiked] = useState(false);
-  const [disliked, setDisliked] = useState(false);
+  const [liked, setLiked] = useState({liked: false, preFetch: false});
+  const [disliked, setDisliked] = useState({
+    disliked: false,
+    preFetch: false,
+  });
   // Set initial multiplexed animated value
   const [pan] = useState(new Animated.ValueXY());
   // Initialize pan responder callback functions
@@ -31,9 +25,9 @@ const SwipeCard = (props: ISwipeCardProps) => {
         // 1 right (like), -1 left (dislike)
         const direction = absDx / dx;
         if (direction === 1) {
-          setLiked(true);
+          setLiked({liked: true, preFetch: false});
         } else {
-          setDisliked(true);
+          setDisliked({disliked: true, preFetch: false});
         }
         if (absDx > 120) {
           Animated.decay(pan, {
@@ -53,11 +47,11 @@ const SwipeCard = (props: ISwipeCardProps) => {
   );
 
   console.log(liked);
+  console.log(disliked);
 
   // Destruct props
-  const {profile} = props;
-  const {dob, name, bio, id} = profile;
-
+  const {dob, name, bio, id} = props.profile;
+  console.log(dob);
   const profileBday = moment(dob, 'MM/DD/YYYY');
   const profileAge = moment().diff(profileBday, 'years');
   const fbImage = `https://graph.facebook.com/${id}/picture?height=500`;
@@ -74,31 +68,15 @@ const SwipeCard = (props: ISwipeCardProps) => {
     <Animated.View
       {...cardPanResponder.panHandlers}
       style={[styles.card, animatedStyle]}>
-      <Image style={{flex: 1}} source={{uri: fbImage}} />
-      <View style={{margin: 20}}>
-        <Text style={{fontSize: 20}}>
+      <Image style={styles.img} source={{uri: fbImage}} />
+      <View style={styles.footerContainer}>
+        <Text style={styles.headerText}>
           {name}, {profileAge}
         </Text>
-        <Text style={{fontSize: 15, color: 'darkgrey'}}>{bio}</Text>
+        <Text style={styles.subHeaderText}>{bio}</Text>
       </View>
     </Animated.View>
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    position: 'absolute',
-    width: windowWidth - 20,
-    height: windowHeight * 0.7,
-    top: (windowHeight * 0.3) / 6,
-    overflow: 'hidden',
-    margin: 10,
-    borderWidth: 1,
-    borderColor: 'lightgrey',
-    borderRadius: 8,
-    backgroundColor: 'white',
-  },
-  wrapper: {},
-});
 
 export default SwipeCard;

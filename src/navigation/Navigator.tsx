@@ -1,32 +1,22 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
 import Messages from '../screens/Messages';
+import {NavigationLayout} from '../types/enum';
 
-const Stack = createStackNavigator();
-
-export enum NavigationLayout {
-  HOME_SCREEN = 'Home',
-  MESSAGES_SCREEN = 'Messages',
-}
+const Tab = createBottomTabNavigator();
 
 const Navigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={NavigationLayout.HOME_SCREEN}>
-        <Stack.Screen
-          name={NavigationLayout.HOME_SCREEN}
-          component={Home}
-          options={{headerShown: true}}
-        />
-        <Stack.Screen
+      <Tab.Navigator>
+        <Tab.Screen name={NavigationLayout.HOME_SCREEN} component={Home} />
+        <Tab.Screen
           name={NavigationLayout.MESSAGES_SCREEN}
           component={Messages}
-          options={{headerShown: false}}
         />
-      </Stack.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
