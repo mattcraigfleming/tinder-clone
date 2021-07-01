@@ -46,12 +46,8 @@ const SwipeCard = (props: ISwipeCardProps) => {
     }),
   );
 
-  console.log(liked);
-  console.log(disliked);
-
   // Destruct props
   const {dob, name, bio, id} = props.profile;
-  console.log(dob);
   const profileBday = moment(dob, 'MM/DD/YYYY');
   const profileAge = moment().diff(profileBday, 'years');
   const fbImage = `https://graph.facebook.com/${id}/picture?height=500`;
@@ -75,6 +71,8 @@ const SwipeCard = (props: ISwipeCardProps) => {
         </Text>
         <Text style={styles.subHeaderText}>{bio}</Text>
       </View>
+      {disliked.disliked ? console.log('liked') : null}
+      {liked.liked ? console.log('disliked') : null}
     </Animated.View>
   );
 };
