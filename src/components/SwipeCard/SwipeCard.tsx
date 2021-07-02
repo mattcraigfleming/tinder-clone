@@ -3,6 +3,7 @@ import {Animated, PanResponder, Image, View, Text} from 'react-native';
 import moment from 'moment';
 import {ISwipeCardProps} from '../../types/interface';
 import styles from './SwipeCardStyles';
+import Toast from 'react-native-toast-message';
 
 const SwipeCard = (props: ISwipeCardProps) => {
   const [liked, setLiked] = useState({liked: false, preFetch: false});
@@ -24,10 +25,10 @@ const SwipeCard = (props: ISwipeCardProps) => {
         const absDx = Math.abs(dx);
         // 1 right (like), -1 left (dislike)
         const direction = absDx / dx;
-        if (direction === 1) {
-          setLiked({liked: true, preFetch: false});
+        if (direction == 1) {
+          setLiked({liked: true, preFetch: true});
         } else {
-          setDisliked({disliked: true, preFetch: false});
+          setDisliked({disliked: true, preFetch: true});
         }
         if (absDx > 120) {
           Animated.decay(pan, {
@@ -72,8 +73,8 @@ const SwipeCard = (props: ISwipeCardProps) => {
         </Text>
         <Text style={styles.subHeaderText}>{bio}</Text>
       </View>
-      {disliked.disliked ? console.log('liked') : null}
-      {liked.liked ? console.log('disliked') : null}
+      {disliked.disliked ? <Toast ref={ref => Toast.setRef(ref)} /> : null}
+      {liked.liked && <Toast ref={ref => Toast.setRef(ref)} />}
     </Animated.View>
   );
 };
